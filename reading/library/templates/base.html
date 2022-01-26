@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Library App</title>
+    </head>
+    <body>
+        <nav>
+            <a href="{% url 'library-home' %}">Home</a>
+        </nav>
+        <main>{% block content%} {% endblock content%}</main>
+    </body>
+
+</html>
