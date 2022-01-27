@@ -4,5 +4,6 @@
     <h1>Welcome to the Library</h1>
     {% for book in books %}
         <p><a href="{% url 'library-show' id=book.id %}">{{book.title}}</a></p>
+        <p> - Borrower: {{book.borrower}}</p>
     {% endfor %}
 {% endblock content%}

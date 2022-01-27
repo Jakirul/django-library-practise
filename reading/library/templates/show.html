@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Author: {{book.title}}</h1>
+    <h1>Title: {{book.title}}</h1>
     <h3>Author: {{book.author}}</h3>
+
+    {% if not book.borrower %}
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Borrow me" name="borrow" />
+        </form>
+    {% else %}
+        {% if book.borrower == user %}
+            <div>Thank you for borrowing me</div>
+            <form method="POST">
+                {% csrf_token %}
+                {{form2.as_p}}
+                <input type="submit" value="Return me" name="return" />
+            </form>
+
+
+        {% else %}
+            <div>I have been borrowed by {{ book.borrower.username }}!</div>
+        {% endif %}
+    {% endif %}
 {% endblock content%}
